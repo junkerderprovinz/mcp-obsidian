@@ -13,8 +13,7 @@
   <a href="https://obsidian.md"><img src="https://img.shields.io/badge/App-Obsidian-7c3aed?style=for-the-badge&logo=obsidian&logoColor=white" alt="Obsidian" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Template-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>&nbsp;
-</p>
-<p align="center">
+</p> <p align="center">
   <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee" height="36"></a>
 </p>
 
@@ -26,6 +25,7 @@ no cloud sync, no third-party account, runs entirely on your own server.
 </p>
 
 
+
 ## Table of Contents
 
 1. [What is this?](#1-what-is-this)
@@ -35,6 +35,7 @@ no cloud sync, no third-party account, runs entirely on your own server.
 5. [Networking Notes](#5-networking-notes)
 6. [Troubleshooting](#6-troubleshooting)
 7. [Contributing / License](#7-contributing--license)
+
 
 
 ## 1. What is this?
@@ -56,6 +57,7 @@ This container bridges your **Obsidian Vault** and any MCP-compatible AI client:
 - Compatible with **local LLMs** via Ollama as well as cloud models
 
 
+
 ### How it works
 
 ```
@@ -72,6 +74,7 @@ AI Client (Open WebUI / Claude / ...)
         v
   Your Vault (Markdown files on disk)
 ```
+
 
 
 ## 2. Quick Start on Unraid
@@ -98,6 +101,7 @@ mkdir -p /boot/config/plugins/dockerMan/templates-user && \
 curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-mcp-obsidian.xml \
   https://raw.githubusercontent.com/junkerderprovinz/mcp-obsidian/main/templates/mcp-obsidian.xml
 ```
+
 
 
 ### Step 3 — Add the container
@@ -141,6 +145,7 @@ docker run -d \
 | `9999` | MCP server — AI clients connect here |
 
 
+
 ## 4. Connecting to Open WebUI
 
 Once the container is running, register it as a tool server in Open WebUI:
@@ -155,6 +160,7 @@ Once the container is running, register it as a tool server in Open WebUI:
 
 From this point any model running through Open WebUI (local via Ollama or
 cloud via API key) can search and edit your Vault mid-conversation.
+
 
 
 ## 5. Networking Notes
@@ -176,6 +182,7 @@ the container's network (e.g. your desktop PC at `192.168.1.50`), or enable
 
 The Local REST API plugin only serves requests while **Obsidian is running**.
 If Obsidian is closed, the MCP server will return connection errors to the AI client.
+
 
 
 ## 6. Troubleshooting
@@ -216,6 +223,7 @@ If Obsidian is closed, the MCP server will return connection errors to the AI cl
 </details>
 
 
+
 ## 7. Contributing / License
 
 Pull requests welcome. Issues: <https://github.com/junkerderprovinz/mcp-obsidian/issues>
@@ -226,6 +234,7 @@ This **wrapper repository** (Unraid template and README) is licensed under the
 **mcp-obsidian itself** is a separate project by Markus Pfundstein and retains
 its own upstream license. See the [upstream repository](https://github.com/MarkusPfundstein/mcp-obsidian)
 for details.
+
 
 
 ### Credits
