@@ -1,0 +1,67 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "templates/**"
+      - ".github/workflows/lint.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "templates/**"
+      - ".github/workflows/lint.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  xmllint:
+    name: XML Template Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install libxml2-utils
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-utils
+
+      - name: Validate XML well-formedness
+        run: |
+          set -e
+          shopt -s nullglob
+          files=(templates/*.xml)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No XML templates found, skipping."
+            exit 0
+          fi
+          for f in "${files[@]}"; do
+            echo "::group::Linting $f"
+            xmllint --noout "$f"
+            echo "::endgroup::"
+          done
+
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run shellcheck (if scripts exist)
+        run: |
+          set -e
+          mapfile -t scripts < <(find . -type f \( -name "*.sh" -o -name "*.bash" \) -not -path "./.git/*")
+          if [ ${#scripts[@]} -eq 0 ]; then
+            echo "No shell scripts found, skipping."
+            exit 0
+          fi
+          sudo apt-get update && sudo apt-get install -y shellcheck
+          for s in "${scripts[@]}"; do
+            echo "::group::Shellcheck $s"
+            shellcheck "$s"
+            echo "::endgroup::"
+          done

@@ -1,0 +1,90 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - ".github/assets/**"
+      - ".github/workflows/lint.yml"
+  schedule:
+    # Daily at 03:30 UTC to pick up upstream changes
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Additional tag to publish (e.g. v1.0.0)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  UPSTREAM_REPO: MarkusPfundstein/mcp-obsidian
+  UPSTREAM_REF: main
+  IMAGE_NAME: ghcr.io/junkerderprovinz/mcp-obsidian
+
+jobs:
+  build:
+    name: Build & push multi-arch image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout upstream (${{ env.UPSTREAM_REPO }})
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.UPSTREAM_REPO }}
+          ref: ${{ env.UPSTREAM_REF }}
+          path: upstream
+
+      - name: Verify Dockerfile present
+        run: |
+          if [ ! -f upstream/Dockerfile ]; then
+            echo "Upstream has no Dockerfile at repo root."
+            echo "Listing upstream contents for inspection:"
+            ls -la upstream
+            exit 1
+          fi
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=v1.0.0
+            type=raw,value=${{ github.event.inputs.tag }},enable=${{ github.event.inputs.tag != '' }}
+            type=sha,prefix=sha-,format=short
+          labels: |
+            org.opencontainers.image.title=mcp-obsidian
+            org.opencontainers.image.description=MCP server for Obsidian (Unraid Docker template wrapper).
+            org.opencontainers.image.url=https://github.com/junkerderprovinz/mcp-obsidian
+            org.opencontainers.image.source=https://github.com/${{ env.UPSTREAM_REPO }}
+            org.opencontainers.image.licenses=MIT
+
+      - name: Build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./upstream
+          file: ./upstream/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
