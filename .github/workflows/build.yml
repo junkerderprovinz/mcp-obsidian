@@ -3,49 +3,38 @@ name: Build
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - "**.md"
-      - ".github/assets/**"
-      - ".github/workflows/lint.yml"
+    paths:
+      - "docker/**"
+      - ".github/workflows/build.yml"
   schedule:
-    # Daily at 03:30 UTC to pick up upstream changes
+    # Daily at 03:30 UTC to pick up upstream package updates from PyPI
     - cron: "30 3 * * *"
   workflow_dispatch:
     inputs:
       tag:
-        description: "Additional tag to publish (e.g. v1.0.0)"
+        description: "Additional tag to publish (e.g. v1.0.1)"
         required: false
         default: ""
+      upstream_version:
+        description: "Upstream mcp-obsidian version on PyPI (default 0.2.2)"
+        required: false
+        default: "0.2.2"
 
 permissions:
   contents: read
   packages: write
 
 env:
-  UPSTREAM_REPO: MarkusPfundstein/mcp-obsidian
-  UPSTREAM_REF: main
   IMAGE_NAME: ghcr.io/junkerderprovinz/mcp-obsidian
+  DEFAULT_UPSTREAM_VERSION: "0.2.2"
 
 jobs:
   build:
     name: Build & push multi-arch image
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout upstream (${{ env.UPSTREAM_REPO }})
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          repository: ${{ env.UPSTREAM_REPO }}
-          ref: ${{ env.UPSTREAM_REF }}
-          path: upstream
-
-      - name: Verify Dockerfile present
-        run: |
-          if [ ! -f upstream/Dockerfile ]; then
-            echo "Upstream has no Dockerfile at repo root."
-            echo "Listing upstream contents for inspection:"
-            ls -la upstream
-            exit 1
-          fi
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -59,6 +48,16 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Resolve upstream version
+        id: ver
+        run: |
+          v="${{ github.event.inputs.upstream_version }}"
+          if [ -z "$v" ]; then
+            v="${{ env.DEFAULT_UPSTREAM_VERSION }}"
+          fi
+          echo "value=$v" >> "$GITHUB_OUTPUT"
+          echo "Upstream mcp-obsidian version: $v"
 
       - name: Extract metadata
         id: meta
@@ -74,16 +73,18 @@ jobs:
             org.opencontainers.image.title=mcp-obsidian
             org.opencontainers.image.description=MCP server for Obsidian (Unraid Docker template wrapper).
             org.opencontainers.image.url=https://github.com/junkerderprovinz/mcp-obsidian
-            org.opencontainers.image.source=https://github.com/${{ env.UPSTREAM_REPO }}
+            org.opencontainers.image.source=https://github.com/junkerderprovinz/mcp-obsidian
             org.opencontainers.image.licenses=MIT
 
       - name: Build & push
         uses: docker/build-push-action@v6
         with:
-          context: ./upstream
-          file: ./upstream/Dockerfile
+          context: ./docker
+          file: ./docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
+          build-args: |
+            UPSTREAM_VERSION=${{ steps.ver.outputs.value }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
