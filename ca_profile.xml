@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <Profile>
+    MCP-Server for Obsidian on Unraid – Docker template that wraps Markus
+    Pfundstein's mcp-obsidian into a ready-to-use container. Bridges a local
+    Obsidian Vault (via the Local REST API community plugin) to any client
+    speaking the Model Context Protocol — Open WebUI, Claude Desktop, Cursor,
+    Zed and others. AI agents can search, read and write notes directly in
+    the Vault while everything stays on the user's own server.
+    Self-built multi-arch image (amd64 + arm64), daily rebuild from upstream.
+    Maintained by junkerderprovinz. Support via GitHub issues and the Unraid
+    forum support thread.
+  </Profile>
+  <Icon>https://raw.githubusercontent.com/junkerderprovinz/mcp-obsidian/main/.github/assets/mcp-obsidian-icon.png</Icon>
+  <WebPage>https://github.com/junkerderprovinz/mcp-obsidian</WebPage>
+</CommunityApplications>

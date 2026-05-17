@@ -1,21 +1,20 @@
 <h1 align="center">MCP-Server for Obsidian on Unraid</h1>
 
-<p align="center">
+<a href="https://github.com/MarkusPfundstein/mcp-obsidian">
   <img src="https://raw.githubusercontent.com/junkerderprovinz/mcp-obsidian/main/.github/assets/mcp-obsidian-banner.png" alt="MCP Obsidian" width="100%">
-</p>
+</a>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td align="center"><a href="https://github.com/junkerderprovinz/mcp-obsidian/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/mcp-obsidian/build.yml?branch=main&label=Build&style=flat-square&logo=githubactions&logoColor=white" alt="Build"></a></td>
-    <td align="center"><a href="https://github.com/junkerderprovinz/mcp-obsidian/actions/workflows/lint.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/mcp-obsidian/lint.yml?branch=main&label=Lint&style=flat-square&logo=githubactions&logoColor=white" alt="Lint"></a></td>
-    <td align="center"><a href="https://github.com/junkerderprovinz/mcp-obsidian/pkgs/container/mcp-obsidian"><img src="https://img.shields.io/badge/Image-ghcr.io-1d99f3?style=flat-square&logo=docker&logoColor=white" alt="Image"></a></td>
-    <td align="center"><a href="https://github.com/MarkusPfundstein/mcp-obsidian"><img src="https://img.shields.io/badge/Upstream-mcp--obsidian-6c4ab6?style=flat-square&logo=github&logoColor=white" alt="Upstream"></a></td>
-    <td align="center"><a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/Protocol-MCP-6c4ab6?style=flat-square&logo=anthropic&logoColor=white" alt="MCP"></a></td>
-    <td align="center"><a href="https://obsidian.md"><img src="https://img.shields.io/badge/App-Obsidian-7c3aed?style=flat-square&logo=obsidian&logoColor=white" alt="Obsidian"></a></td>
-    <td align="center"><a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Template-f15a2c?style=flat-square&logo=unraid&logoColor=white" alt="Unraid"></a></td>
-    <td align="center"><a href="https://github.com/junkerderprovinz/mcp-obsidian/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square&logo=opensourceinitiative&logoColor=white" alt="License"></a></td>
-  </tr>
-</table>
+<p align="center">
+  <a href="https://github.com/junkerderprovinz/mcp-obsidian/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/mcp-obsidian/build.yml?branch=main&label=Build&style=for-the-badge&logo=githubactions&logoColor=white" alt="Build" height="36"></a>&nbsp;
+  <a href="https://github.com/junkerderprovinz/mcp-obsidian/actions/workflows/lint.yml"><img src="https://img.shields.io/github/actions/workflow/status/junkerderprovinz/mcp-obsidian/lint.yml?branch=main&label=Lint&style=for-the-badge&logo=githubactions&logoColor=white" alt="Lint" height="36"></a>&nbsp;
+  <a href="https://github.com/junkerderprovinz/mcp-obsidian/pkgs/container/mcp-obsidian"><img src="https://img.shields.io/badge/Image-ghcr.io-1d99f3?style=for-the-badge&logo=docker&logoColor=white" alt="Image" height="36"></a>&nbsp;
+  <a href="https://github.com/junkerderprovinz/mcp-obsidian/pkgs/container/mcp-obsidian"><img src="https://img.shields.io/badge/Arch-amd64%20%7C%20arm64-success?style=for-the-badge&logo=linux&logoColor=white" alt="Arch" height="36"></a>&nbsp;
+  <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/Protocol-MCP-6c4ab6?style=for-the-badge&logo=anthropic&logoColor=white" alt="MCP" height="36"></a>&nbsp;
+  <a href="https://obsidian.md"><img src="https://img.shields.io/badge/App-Obsidian-7c3aed?style=for-the-badge&logo=obsidian&logoColor=white" alt="Obsidian" height="36"></a>&nbsp;
+  <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Template-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>&nbsp;
+  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee" height="36"></a>
+</p>
 
 <p align="center">
 Unraid Docker template for the MCP-server for Obsidian.<br>
@@ -23,6 +22,7 @@ Connects your local Obsidian Vault to AI agents like Open WebUI, Claude, or Gemi
 via the <a href="https://modelcontextprotocol.io">Model Context Protocol (MCP)</a> —
 no cloud sync, no third-party account, runs entirely on your own server.
 </p>
+
 
 ## Table of Contents
 
@@ -33,6 +33,7 @@ no cloud sync, no third-party account, runs entirely on your own server.
 5. [Networking Notes](#5-networking-notes)
 6. [Troubleshooting](#6-troubleshooting)
 7. [Contributing / License](#7-contributing--license)
+
 
 ## 1. What is this?
 
@@ -52,6 +53,7 @@ This container bridges your **Obsidian Vault** and any MCP-compatible AI client:
 - Your notes stay **fully local** — no data leaves your server
 - Compatible with **local LLMs** via Ollama as well as cloud models
 
+
 ### How it works
 
 ```
@@ -69,7 +71,9 @@ AI Client (Open WebUI / Claude / ...)
   Your Vault (Markdown files on disk)
 ```
 
+
 ## 2. Quick Start on Unraid
+
 
 ### Step 1 — Prepare Obsidian
 
@@ -82,6 +86,7 @@ Before installing the container, set up the Obsidian side:
    to the actual IP address of the machine running Obsidian (e.g. `192.168.1.50`).
 5. Note the **API Key** shown in the plugin settings — you will need it in Step 3.
 
+
 ### Step 2 — Install the template
 
 Pull the template directly into Unraid via the console or SSH:
@@ -91,6 +96,7 @@ mkdir -p /boot/config/plugins/dockerMan/templates-user && \
 curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-mcp-obsidian.xml \
   https://raw.githubusercontent.com/junkerderprovinz/mcp-obsidian/main/templates/mcp-obsidian.xml
 ```
+
 
 ### Step 3 — Add the container
 
@@ -104,6 +110,7 @@ under *User templates*. Fill in the two required fields:
 
 Hit **Apply**. The container starts in a few seconds.
 
+
 ### Plain Docker (no Unraid)
 
 ```bash
@@ -116,6 +123,7 @@ docker run -d \
   ghcr.io/junkerderprovinz/mcp-obsidian:latest
 ```
 
+
 ## 3. Configuration
 
 | Variable | Default | Required | Description |
@@ -123,11 +131,13 @@ docker run -d \
 | `OBSIDIAN_API_KEY` | *(empty)* | Yes | API key from the Local REST API plugin in Obsidian |
 | `OBSIDIAN_HOST` | `http://192.168.1.50:27124` | Yes | URL of the machine running Obsidian with the plugin active |
 
+
 ### Ports
 
 | Port | Purpose |
 |---|---|
 | `9999` | MCP server — AI clients connect here |
+
 
 ## 4. Connecting to Open WebUI
 
@@ -144,7 +154,9 @@ Once the container is running, register it as a tool server in Open WebUI:
 From this point any model running through Open WebUI (local via Ollama or
 cloud via API key) can search and edit your Vault mid-conversation.
 
+
 ## 5. Networking Notes
+
 
 ### Custom network (Unraid `br0`)
 
@@ -157,10 +169,12 @@ the container's network (e.g. your desktop PC at `192.168.1.50`), or enable
 
 **Settings → Docker → Advanced View → Host access to custom networks: Enabled**
 
+
 ### Obsidian must be open
 
 The Local REST API plugin only serves requests while **Obsidian is running**.
 If Obsidian is closed, the MCP server will return connection errors to the AI client.
+
 
 ## 6. Troubleshooting
 
@@ -199,6 +213,7 @@ If Obsidian is closed, the MCP server will return connection errors to the AI cl
 - Verify the container IP and port are correct and reachable from the Open WebUI container
 </details>
 
+
 ## 7. Contributing / License
 
 Pull requests welcome. Issues: <https://github.com/junkerderprovinz/mcp-obsidian/issues>
@@ -210,16 +225,9 @@ This **wrapper repository** (Unraid template and README) is licensed under the
 its own upstream license. See the [upstream repository](https://github.com/MarkusPfundstein/mcp-obsidian)
 for details.
 
+
 ### Credits
 
 - [**mcp-obsidian**](https://github.com/MarkusPfundstein/mcp-obsidian) — Markus Pfundstein, the actual MCP server
 - [**Local REST API**](https://github.com/coddingtonbear/obsidian-local-rest-api) — coddingtonbear, the Obsidian plugin that makes this possible
 - [**Anthropic**](https://anthropic.com) — for the open MCP standard
-
-## Support this project
-
-If this template saves you a setup hassle, consider buying me a coffee:
-
-<p align="center">
-<a href="https://buymeacoffee.com/junkerderprovinz" target="_blank"><img src="https://raw.githubusercontent.com/junkerderprovinz/krusader/main/.github/assets/button-buy-me-a-coffee.png" width="220" alt="Buy me a coffee"/></a>
-</p>
