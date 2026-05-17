@@ -1,4 +1,4 @@
-<h1 align="center">MCP Obsidian for Unraid</h1>
+<h1 align="center">MCP-Server for Obsidian on Unraid</h1>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/junkerderprovinz/mcp-obsidian/main/.github/assets/mcp-obsidian-banner.png" alt="MCP Obsidian" width="100%">
