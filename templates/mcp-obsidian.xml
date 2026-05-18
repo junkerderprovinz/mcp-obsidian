@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>mcp-obsidian</Name>
+  <Name>MCP-Obsidian</Name>
   <Repository>ghcr.io/junkerderprovinz/mcp-obsidian:latest</Repository>
   <Registry>https://github.com/junkerderprovinz/mcp-obsidian/pkgs/container/mcp-obsidian</Registry>
-  <Network>br0</Network>
+  <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
@@ -41,13 +41,13 @@
   <Config
     Name="Obsidian Host URL"
     Target="OBSIDIAN_HOST"
-    Default="http://192.168.1.50:27124"
+    Default="http://192.168.x.xx:27124"
     Mode=""
-    Description="URL of the machine running Obsidian with the Local REST API plugin active. Change 192.168.1.50 to the actual IP of that machine. Default plugin port is 27124."
+    Description="URL of the machine running Obsidian with the Local REST API plugin active. Change 192.168.x.x to the actual IP of that machine. Default plugin port is 27124."
     Type="Variable"
     Display="always"
     Required="true"
-    Mask="false">http://192.168.1.50:27124</Config>
+    Mask="false">http://192.168.x.x:27124</Config>
 
   <Config
     Name="MCP Server Port"
