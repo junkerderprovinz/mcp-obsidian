@@ -88,7 +88,7 @@ Before installing the container, set up the Obsidian side:
 2. Search for **Local REST API** and install it.
 3. Enable the plugin and open its settings.
 4. Under **Advanced Settings**, change the **Binding Host** from `127.0.0.1`
-   to the actual IP address of the machine running Obsidian (e.g. `192.168.1.50`).
+   to the actual IP address of the machine running Obsidian (e.g. `192.168.x.x`).
 5. Note the **API Key** shown in the plugin settings — you will need it in Step 3.
 
 
@@ -112,7 +112,7 @@ under *User templates*. Fill in the two required fields:
 | Field | Value |
 |---|---|
 | **Obsidian API Key** | The key from the Local REST API plugin |
-| **Obsidian Host URL** | `http://192.168.1.50:27124` |
+| **Obsidian Host URL** | `http://192.168.x.x:27124` |
 
 Hit **Apply**. The container starts in a few seconds.
 
@@ -135,7 +135,7 @@ docker run -d \
 | Variable | Default | Required | Description |
 |---|---|:---:|---|
 | `OBSIDIAN_API_KEY` | *(empty)* | Yes | API key from the Local REST API plugin in Obsidian |
-| `OBSIDIAN_HOST` | `http://192.168.1.50:27124` | Yes | URL of the machine running Obsidian with the plugin active |
+| `OBSIDIAN_HOST` | `http://192.168.x.x:27124` | Yes | URL of the machine running Obsidian with the plugin active |
 
 
 ### Ports
@@ -153,7 +153,7 @@ Once the container is running, register it as a tool server in Open WebUI:
 1. Open your Open WebUI instance and log in as **Admin**.
 2. Go to **Admin Settings → Tools → Manage Tool Servers**.
 3. Click **Add Connection**.
-4. Enter the container URL: `http://192.168.1.50:9999`
+4. Enter the container URL: `http://192.168.x.x:9999`
 5. Leave the auth token field empty — security is handled by the API key
    between this container and Obsidian.
 6. Click **Save**. The Obsidian tools now appear in your model's tool list.
@@ -172,7 +172,7 @@ If your Unraid containers run on a custom network such as `br0` with individual
 IPs, the containers cannot reach the **Unraid host IP** by default.
 
 Make sure Obsidian is running on a **client machine** that is reachable from
-the container's network (e.g. your desktop PC at `192.168.1.50`), or enable
+the container's network (e.g. your desktop PC at `192.168.1.10`), or enable
 **Host access to custom networks** in Unraid:
 
 **Settings → Docker → Advanced View → Host access to custom networks: Enabled**
@@ -191,7 +191,7 @@ If Obsidian is closed, the MCP server will return connection errors to the AI cl
 <summary><b>AI client cannot reach the MCP server</b></summary>
 
 - Verify the container is running: `docker ps | grep mcp-obsidian`
-- Check that port 9999 is reachable: `curl http://192.168.1.50:9999`
+- Check that port 9999 is reachable: `curl http://192.168.x.x:9999`
 - If using a custom network, ensure Host access to custom networks is enabled
   (see [Networking Notes](#5-networking-notes))
 </details>
@@ -202,7 +202,7 @@ If Obsidian is closed, the MCP server will return connection errors to the AI cl
 - Confirm Obsidian is open and the Local REST API plugin is enabled
 - Verify the Binding Host in the plugin settings is set to the machine's
   actual IP — not `127.0.0.1`
-- Test from the container: `docker exec mcp-obsidian curl http://192.168.1.50:27124`
+- Test from the container: `docker exec mcp-obsidian curl http://192.168.x.x:27124`
 </details>
 
 <details>
