@@ -12,6 +12,7 @@
   <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/Protocol-MCP-6c4ab6?style=for-the-badge&logo=anthropic&logoColor=white" alt="MCP" height="36"></a>&nbsp;
   <a href="https://obsidian.md"><img src="https://img.shields.io/badge/App-Obsidian-7c3aed?style=for-the-badge&logo=obsidian&logoColor=white" alt="Obsidian" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Template-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
+  <a href="#"><img src="https://img.shields.io/badge/Status-Deprecated-b00020?style=for-the-badge&logo=github&logoColor=white" alt="Deprecated" height="36"></a>&nbsp;
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>&nbsp;
 </p> <p align="center">
   <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee" height="36"></a>
@@ -23,6 +24,19 @@ Connects your local Obsidian Vault to AI agents like Open WebUI, Claude, or Gemi
 via the <a href="https://modelcontextprotocol.io">Model Context Protocol (MCP)</a> —
 no cloud sync, no third-party account, runs entirely on your own server.
 </p>
+
+> [!WARNING]
+> **Deprecated — this template has been withdrawn from Unraid Community Applications (2026-05-31).**
+>
+> The Obsidian [**Local REST API**](https://github.com/coddingtonbear/obsidian-local-rest-api)
+> plugin now ships a **built-in MCP server** (`https://127.0.0.1:27124/mcp/`, or
+> plain HTTP on `:27123/mcp/`, authenticated with the same bearer token). Point
+> your MCP client straight at that endpoint — this wrapper container is no longer
+> needed.
+>
+> The repository, the `ghcr.io/junkerderprovinz/mcp-obsidian` image and the
+> support thread remain available for anyone still running the container, but it
+> is no longer actively maintained and automatic image rebuilds are disabled.
 
 
 
