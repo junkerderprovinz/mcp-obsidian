@@ -38,7 +38,7 @@ no cloud sync, no third-party account, runs entirely on your own server.
 > support thread remain available for anyone still running the container, but it
 > is no longer actively maintained and automatic image rebuilds are disabled.
 
-
+<br>
 
 ## Table of Contents
 
@@ -50,7 +50,7 @@ no cloud sync, no third-party account, runs entirely on your own server.
 6. [Troubleshooting](#6-troubleshooting)
 7. [Contributing / License](#7-contributing--license)
 
-
+<br>
 
 ## 1. What is this?
 
@@ -89,7 +89,7 @@ AI Client (Open WebUI / Claude / ...)
   Your Vault (Markdown files on disk)
 ```
 
-
+<br>
 
 ## 2. Quick Start on Unraid
 
@@ -143,6 +143,7 @@ docker run -d \
   ghcr.io/junkerderprovinz/mcp-obsidian:latest
 ```
 
+<br>
 
 ## 3. Configuration
 
@@ -158,7 +159,7 @@ docker run -d \
 |---|---|
 | `9999` | MCP server — AI clients connect here |
 
-
+<br>
 
 ## 4. Connecting to Open WebUI
 
@@ -175,7 +176,7 @@ Once the container is running, register it as a tool server in Open WebUI:
 From this point any model running through Open WebUI (local via Ollama or
 cloud via API key) can search and edit your Vault mid-conversation.
 
-
+<br>
 
 ## 5. Networking Notes
 
@@ -197,7 +198,7 @@ the container's network (e.g. your desktop PC at `192.168.1.10`), or enable
 The Local REST API plugin only serves requests while **Obsidian is running**.
 If Obsidian is closed, the MCP server will return connection errors to the AI client.
 
-
+<br>
 
 ## 6. Troubleshooting
 
@@ -236,7 +237,7 @@ If Obsidian is closed, the MCP server will return connection errors to the AI cl
 - Verify the container IP and port are correct and reachable from the Open WebUI container
 </details>
 
-
+<br>
 
 ## 7. Contributing / License
 
