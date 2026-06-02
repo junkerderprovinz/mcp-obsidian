@@ -13,9 +13,7 @@
   <a href="https://obsidian.md"><img src="https://img.shields.io/badge/App-Obsidian-7c3aed?style=for-the-badge&logo=obsidian&logoColor=white" alt="Obsidian" height="36"></a>&nbsp;
   <a href="https://unraid.net"><img src="https://img.shields.io/badge/Unraid-Template-f15a2c?style=for-the-badge&logo=unraid&logoColor=white" alt="Unraid" height="36"></a>&nbsp;
   <a href="#"><img src="https://img.shields.io/badge/Status-Deprecated-b00020?style=for-the-badge&logo=github&logoColor=white" alt="Deprecated" height="36"></a>&nbsp;
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>&nbsp;
-</p> <p align="center">
-  <a href="https://buymeacoffee.com/junkerderprovinz"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee" height="36"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="License" height="36"></a>
 </p>
 
 <p align="center">
@@ -23,6 +21,14 @@ Unraid Docker template for the MCP-server for Obsidian.<br>
 Connects your local Obsidian Vault to AI agents like Open WebUI, Claude, or Gemini
 via the <a href="https://modelcontextprotocol.io">Model Context Protocol (MCP)</a> —
 no cloud sync, no third-party account, runs entirely on your own server.
+</p>
+
+<br>
+
+<p align="center">
+  <a href="https://buymeacoffee.com/junkerderprovinz">
+    <img src=".github/assets/button-buy-me-a-coffee.svg" alt="Buy me a coffee" width="220">
+  </a>
 </p>
 
 > [!WARNING]
@@ -35,8 +41,8 @@ no cloud sync, no third-party account, runs entirely on your own server.
 > needed.
 >
 > The repository, the `ghcr.io/junkerderprovinz/mcp-obsidian` image and the
-> support thread remain available for anyone still running the container, but it
-> is no longer actively maintained and automatic image rebuilds are disabled.
+> support thread remain available for anyone still running the container, and the
+> image is still rebuilt automatically (weekly) for base-image security patches.
 
 <br>
 
@@ -49,6 +55,7 @@ no cloud sync, no third-party account, runs entirely on your own server.
 5. [Networking Notes](#5-networking-notes)
 6. [Troubleshooting](#6-troubleshooting)
 7. [Contributing / License](#7-contributing--license)
+8. [Support this project](#8-support-this-project)
 
 <br>
 
@@ -106,29 +113,23 @@ Before installing the container, set up the Obsidian side:
 5. Note the **API Key** shown in the plugin settings — you will need it in Step 3.
 
 
-### Step 2 — Install the template
+### Step 2 — Run the container
 
-Pull the template directly into Unraid via the console or SSH:
-
-```bash
-mkdir -p /boot/config/plugins/dockerMan/templates-user && \
-curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-mcp-obsidian.xml \
-  https://raw.githubusercontent.com/junkerderprovinz/mcp-obsidian/main/templates/mcp-obsidian.xml
-```
+> The Unraid Community Applications template has been **withdrawn** (see the
+> deprecation notice above) and is no longer shipped in this repository. Run the
+> image directly with the [Plain Docker](#plain-docker-no-unraid) command below.
 
 
 
-### Step 3 — Add the container
+### Step 3 — Set the two required values
 
-In the Unraid Web UI: **Docker** tab → **Add Container** → select **mcp-obsidian**
-under *User templates*. Fill in the two required fields:
+The container needs exactly two values (set them as the `-e` environment variables
+in the Plain Docker command below):
 
-| Field | Value |
-|---|---|
-| **Obsidian API Key** | The key from the Local REST API plugin |
-| **Obsidian Host URL** | `http://192.168.x.x:27124` |
-
-Hit **Apply**. The container starts in a few seconds.
+| Field | Env var | Value |
+|---|---|---|
+| **Obsidian API Key** | `OBSIDIAN_API_KEY` | The key from the Local REST API plugin |
+| **Obsidian Host URL** | `OBSIDIAN_HOST` | `http://192.168.x.x:27124` |
 
 
 ### Plain Docker (no Unraid)
@@ -257,3 +258,15 @@ for details.
 - [**mcp-obsidian**](https://github.com/MarkusPfundstein/mcp-obsidian) — Markus Pfundstein, the actual MCP server
 - [**Local REST API**](https://github.com/coddingtonbear/obsidian-local-rest-api) — coddingtonbear, the Obsidian plugin that makes this possible
 - [**Anthropic**](https://anthropic.com) — for the open MCP standard
+
+<br>
+
+## 8. Support this project
+
+If this template saved you a setup hassle or a debug night, consider buying me a coffee:
+
+<p align="center">
+  <a href="https://buymeacoffee.com/junkerderprovinz">
+    <img src=".github/assets/button-buy-me-a-coffee.svg" alt="Buy me a coffee" width="220">
+  </a>
+</p>

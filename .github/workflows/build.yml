@@ -1,14 +1,15 @@
 name: Build
 
 on:
-  # Deprecated repo: automatic scheduled rebuilds are disabled (the Obsidian
-  # Local REST API plugin now ships a built-in MCP server). Manual builds for
-  # existing users are still possible via the "Run workflow" button.
+  # Weekly rebuild (Sun 04 UTC) to pick up base-image / dependency security
+  # patches, plus on build changes and manual "Run workflow".
   push:
     branches: [main]
     paths:
       - "docker/**"
       - ".github/workflows/build.yml"
+  schedule:
+    - cron: "0 4 * * 0"
   workflow_dispatch:
     inputs:
       tag:
